@@ -9,6 +9,7 @@ use tauri::api::dialog;
 
 use image::{DynamicImage, ImageBuffer, Rgba, RgbaImage, GenericImageView};
 use std::path::Path;
+use std::fs;
 
 #[tauri::command]
 async fn file_upload() -> Option<String> {
@@ -23,10 +24,15 @@ async fn file_upload() -> Option<String> {
         let sub_image_width = width/5;
         let sub_image_height = (sub_image_width as f32/21.0*29.7) as u32; 
 
+        let output_dir = dirs::data_local_dir().unwrap().join("Print Splicer");
+        // add the app name to the output path
+        // let output_dir = output_dir.join("Print Splicer");
+        fs::create_dir_all(&output_dir).expect("Failed to create output directory");
+
         for (row, y) in (0..height).step_by(sub_image_height as usize).enumerate() {
             for (column, x) in (0..width).step_by(sub_image_width as usize).enumerate() {
                 let sub_image = extract_sub_image(&img, x, y, sub_image_width, sub_image_height);
-                let output_path = format!("{}{}_{}.png", "/Users/dot32/Downloads/", column, row);
+                let output_path = format!("{}/{}_{}.png", output_dir.to_string_lossy(), column, row);
                 sub_image.save(output_path).expect("Failed to save sub-image");
             }
         }
