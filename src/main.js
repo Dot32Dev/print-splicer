@@ -7,6 +7,10 @@ async function file_upload() {
   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
   // greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
   let path = await invoke("file_upload");
+  if (path === null) {
+    console.log("No file selected");
+    return;
+  }
   console.log(path);
   // create image element
   let img = document.createElement("img");

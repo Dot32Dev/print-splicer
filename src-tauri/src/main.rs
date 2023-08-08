@@ -7,15 +7,18 @@
 // use tauri::Wry;
 use tauri::api::dialog;
 
+// use image::{DynamicImage, ImageBuffer, Rgba, RgbaImage};
+// use std::path::Path;
+
 #[tauri::command]
-async fn file_upload() -> String {
+async fn file_upload() -> Option<String> {
     let path = dialog::blocking::FileDialogBuilder::default()
-        .add_filter("Image", &["png", "jpg", "jpeg"])
+        .add_filter("Image", &["png", "jpg", "jpeg", "bmp"])
         .pick_file();
-    // if let Some(path) = path {
-        // println!("Path: {:?}", path);
-    // }
-    path.unwrap().to_str().unwrap().to_string()
+    if let Some(path) = path {
+        return Some(path.to_str().unwrap().to_string())
+    }
+    None
 }
 
 fn main() {
