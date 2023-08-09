@@ -80,6 +80,8 @@ img {
 .image-container {
   position: relative;
   width: fit-content;
+  background-color: #0f0f0f98;
+  /* background-color: white; */
 }
 /* .image-container .grid-overlay {
   position: absolute;
@@ -140,4 +142,5 @@ img {
   /* background: #2f2f2f;  */
   border-right: 1px solid #2f2f2f;
   border-bottom: 1px solid #2f2f2f;
+  /* box-shadow: 0px -3px 2px 0px rgba(0,0,0,0.75) inset; */
 }
