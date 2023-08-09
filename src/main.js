@@ -35,20 +35,33 @@ async function file_upload() {
   // gridOverlay.style.gridTemplateColumns = `repeat(${numColumns}, ${gridElementWidth}px))`;
   // gridOverlay.style.gridTemplateRows = `repeat(${numRows}, ${gridElementHeight}px)`;
 
+  let numColumns = 6; // Number of columns
+  
   img.onload = async () => {
     let width = img.width;
     let height = img.height;
     let aspectRatio = 1/Math.sqrt(2);
-    let numColumns = 5; // Number of columns
     let gridElementWidth = width / numColumns;
     let gridElementHeight = gridElementWidth / aspectRatio;
     let numRows = Math.ceil(height / gridElementHeight); // Number of rows
     let gridOverlay = document.querySelector(".grid-overlay");
     gridOverlay.style.gridTemplateColumns = `repeat(${numColumns}, ${gridElementWidth}px)`;
     gridOverlay.style.gridTemplateRows = `repeat(${numRows}, ${gridElementHeight}px)`;
+
+    // Remove all existing grid elements
+    let gridElements = document.querySelectorAll(".grid-overlay > *");
+    gridElements.forEach((element) => {
+      element.remove();
+    });
+    // Add back new grid elements
+    for (let i = 0; i < numColumns * numRows; i++) {
+      let gridElement = document.createElement("div");
+      gridElement.classList.add("grid-element");
+      gridOverlay.appendChild(gridElement);
+    }
   }
 
-  await invoke("splice_image", { path: path });
+  await invoke("splice_image", { path: path, columns: numColumns });
 }
 
 window.addEventListener("DOMContentLoaded", () => {

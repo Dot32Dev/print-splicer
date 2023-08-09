@@ -43,12 +43,12 @@ async fn file_upload() -> Option<String> {
 }
 
 #[tauri::command]
-async fn splice_image(path: String) {
+async fn splice_image(path: String, columns: u32) {
     let img = image::open(path.clone()).expect("Failed to open image");
     let (width, height) = img.dimensions();
     println!("Image dimensions: {} x {}", width, height);
 
-    let sub_image_width = width/5;
+    let sub_image_width = width/columns;
     let sub_image_height = (sub_image_width as f32/21.0*29.7) as u32; 
 
     let output_dir = dirs::data_local_dir().unwrap().join("Print Splicer");
