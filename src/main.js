@@ -47,6 +47,8 @@ async function file_upload() {
     for (let i = 0; i < numColumns * numRows; i++) {
       let gridElement = document.createElement("div");
       gridElement.classList.add("grid-element");
+      // Give the element the id of column_row
+      // gridElement.id = `grid_${Math.floor(i / numColumns)}_${i % numColumns}`;
       gridOverlay.appendChild(gridElement);
     }
   }

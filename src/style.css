@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  align-items: center;
 }
 
 button, input {
@@ -144,3 +145,8 @@ img {
   border-bottom: 1px solid #2f2f2f;
   /* box-shadow: 0px -3px 2px 0px rgba(0,0,0,0.75) inset; */
 }
+
+/* make image container that has no image display none
+.image-container:not(:has(img)) {
+  display: none;
+} */
