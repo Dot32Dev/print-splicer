@@ -135,14 +135,16 @@ button, input {
   height: 100%;
   display: grid;
   pointer-events: none; /* Allows clicking on the image underneath */
-  border-left: 1px solid #2f2f2f;
-  border-top: 1px solid #2f2f2f;
+  /* border-left: 1px solid #2f2f2f;
+  border-top: 1px solid #2f2f2f; */
 }
 
 .grid-overlay > * {
   /* background: #2f2f2f;  */
-  border-right: 1px solid #2f2f2f;
-  border-bottom: 1px solid #2f2f2f;
+  /* border-right: 1px solid #2f2f2f;
+  border-bottom: 1px solid #2f2f2f; */
+  outline: 1px solid #2f2f2f;
+  outline-offset: -1px;
   /* box-shadow: 0px -3px 2px 0px rgba(0,0,0,0.75) inset; */
 }
 
@@ -153,4 +155,5 @@ button, input {
 
 .grid-overlay > * img {
   height: 100%;
+  /* opacity: 0.5; */
 }

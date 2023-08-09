@@ -61,7 +61,6 @@ async function file_upload() {
     numColumns = parseInt(numColumnsInput.value);
     img.onload();
   });
-
   // await invoke("splice_image", { path: path, columns: numColumns });
 }
 
@@ -82,6 +81,17 @@ listen("image-saved", (message) => {
   let gridElement = document.getElementById(filename);
   // Append the image to the grid element
   gridElement.appendChild(img);
+
+  // Set grid element background colour
+  gridElement.style.backgroundColor = "#2f2f2f";
+
+  // let mainImage = document.querySelector(".image-container > img");
+  // mainImage.style.opacity = 0.5;
+  // // Make the grid overlay elements no border
+  // let gridElements = document.querySelectorAll(".grid-overlay > *");
+  // gridElements.forEach((element) => {
+  //   element.style.border = "none";
+  // });
 });
 
 window.addEventListener("DOMContentLoaded", () => {
