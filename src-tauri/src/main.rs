@@ -3,12 +3,12 @@
     windows_subsystem = "windows"
 )]
 
-// use tauri::Window;
-// use tauri::Wry;
+use tauri::Window;
+use tauri::Wry;
 use tauri::api::dialog;
 
 use image::{DynamicImage, ImageBuffer, Rgba, RgbaImage, GenericImageView};
-use std::path::Path;
+use std::sync::Arc;
 use std::fs;
 
 #[tauri::command]
@@ -43,7 +43,7 @@ async fn file_upload() -> Option<String> {
 }
 
 #[tauri::command]
-async fn splice_image(path: String, columns: u32) {
+async fn splice_image(path: String, columns: u32, window: Window<Wry>) {
     let img = image::open(path.clone()).expect("Failed to open image");
     let (width, height) = img.dimensions();
     println!("Image dimensions: {} x {}", width, height);
@@ -58,9 +58,11 @@ async fn splice_image(path: String, columns: u32) {
 
     for (row, y) in (0..height).step_by(sub_image_height as usize).enumerate() {
         for (column, x) in (0..width).step_by(sub_image_width as usize).enumerate() {
+            let handle = Arc::new(window.clone()).clone();
             let sub_image = extract_sub_image(&img, x, y, sub_image_width, sub_image_height);
             let output_path = format!("{}/{}_{}.png", output_dir.to_string_lossy(), column, row);
-            sub_image.save(output_path).expect("Failed to save sub-image");
+            sub_image.save(output_path.clone()).expect("Failed to save sub-image");
+            handle.emit("image-saved", output_path).expect("Failed to emit event");
         }
     }
 }

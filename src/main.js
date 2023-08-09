@@ -2,6 +2,7 @@ const { invoke } = window.__TAURI__.tauri;
 // import { convertFileSrc } from '@tauri-apps/api/tauri';
 const { convertFileSrc } = window.__TAURI__.tauri;
 // const { join } = window.__TAURI__.tauri.path;
+var { emit, listen } = window.__TAURI__.event;
 
 let path;
 let numColumns = 5;
@@ -48,7 +49,7 @@ async function file_upload() {
       let gridElement = document.createElement("div");
       gridElement.classList.add("grid-element");
       // Give the element the id of column_row
-      // gridElement.id = `grid_${Math.floor(i / numColumns)}_${i % numColumns}`;
+      gridElement.id = `${i % numColumns}_${Math.floor(i / numColumns)}`;
       gridOverlay.appendChild(gridElement);
     }
   }
@@ -67,6 +68,21 @@ async function file_upload() {
 async function chop_image() {
   await invoke("splice_image", { path: path, columns: numColumns });
 }
+
+listen("image-saved", (message) => {
+  console.log(message.payload);
+  let img = document.createElement("img");
+  img.src = convertFileSrc(message.payload);
+
+  // Get the filename of the image
+  let filename = message.payload.split("/").pop();
+  // Remove .png from the filename
+  filename = filename.substring(0, filename.length - 4);
+  // Find something with the filenames id
+  let gridElement = document.getElementById(filename);
+  // Append the image to the grid element
+  gridElement.appendChild(img);
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   document
