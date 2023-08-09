@@ -68,3 +68,65 @@ button {
 img {
   height: 60vh;
 }
+
+.image-container {
+  position: relative;
+  width: fit-content;
+}
+/* .image-container .grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-overlay > * {
+  background: orange;
+  width: 100%;
+}
+.grid-overlay > *::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0;
+  padding-bottom: calc(100% / (21/29.7));
+} */
+
+/* .grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(210mm), 1fr));
+  grid-auto-rows: 297mm; 
+  pointer-events: none;
+}
+
+.grid-overlay > * {
+  background-color: rgba(255, 0, 0, 0.331);
+  border: 1px dashed rgba(0, 0, 0, 0.5)
+} */
+
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  pointer-events: none; /* Allows clicking on the image underneath */
+}
+
+.grid-overlay > * {
+  /* background: rgba(0, 0, 0, 0.1);  */
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
