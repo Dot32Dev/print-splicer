@@ -132,12 +132,12 @@ img {
   height: 100%;
   display: grid;
   pointer-events: none; /* Allows clicking on the image underneath */
-  border-left: 1px solid rgba(0, 0, 0, 0.2);
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid #2f2f2f;
+  border-top: 1px solid #2f2f2f;
 }
 
 .grid-overlay > * {
-  /* background: rgba(0, 0, 0, 0.2);  */
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  /* background: #2f2f2f;  */
+  border-right: 1px solid #2f2f2f;
+  border-bottom: 1px solid #2f2f2f;
 }
