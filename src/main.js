@@ -3,10 +3,13 @@ const { invoke } = window.__TAURI__.tauri;
 const { convertFileSrc } = window.__TAURI__.tauri;
 // const { join } = window.__TAURI__.tauri.path;
 
+let path;
+let numColumns = 5;
+
 async function file_upload() {
   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
   // greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-  let path = await invoke("file_upload");
+  path = await invoke("file_upload");
   if (path === null) {
     console.log("No file selected");
     return;
@@ -22,7 +25,7 @@ async function file_upload() {
   // append to image container
   img_container.appendChild(img);
 
-  let numColumns = 5; // Number of columns
+  // let numColumns = 5; // Number of columns
   
   img.onload = async () => {
     let width = img.width;
@@ -52,15 +55,23 @@ async function file_upload() {
   let numColumnsInput = document.querySelector("#columns");
   // Add event listener
   numColumnsInput.addEventListener("change", () => {
-    numColumns = numColumnsInput.value;
+    numColumns = parseInt(numColumnsInput.value);
     img.onload();
   });
 
   // await invoke("splice_image", { path: path, columns: numColumns });
 }
 
+async function chop_image() {
+  await invoke("splice_image", { path: path, columns: numColumns });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   document
     .querySelector("#file-upload")
     .addEventListener("click", () => file_upload());
+
+  document
+    .querySelector("#chop-image")
+    .addEventListener("click", () => chop_image());
 });
