@@ -17,6 +17,8 @@ async function file_upload() {
   img.src = convertFileSrc(path);
   // append to body
   document.body.appendChild(img)
+
+  await invoke("splice_image", { path: path });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
