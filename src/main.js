@@ -22,20 +22,7 @@ async function file_upload() {
   // append to image container
   img_container.appendChild(img);
 
-  // const imageWidth = img.width;
-  // console.log(imageWidth)
-  // const aspectRatio = Math.sqrt(2);
-  // // const gridElementHeight = imageWidth/5 / 29.7*21;
-  // const numColumns = 5; // Number of columns
-  // const gridElementWidth = imageWidth / numColumns;
-  // console.log(gridElementWidth)
-  // const gridElementHeight = gridElementWidth / aspectRatio;
-  // const numRows = Math.ceil(img.height / gridElementHeight); // Number of rows
-  // const gridOverlay = document.querySelector(".grid-overlay");
-  // gridOverlay.style.gridTemplateColumns = `repeat(${numColumns}, ${gridElementWidth}px))`;
-  // gridOverlay.style.gridTemplateRows = `repeat(${numRows}, ${gridElementHeight}px)`;
-
-  let numColumns = 6; // Number of columns
+  let numColumns = 5; // Number of columns
   
   img.onload = async () => {
     let width = img.width;
@@ -61,7 +48,15 @@ async function file_upload() {
     }
   }
 
-  await invoke("splice_image", { path: path, columns: numColumns });
+  // Get number input element
+  let numColumnsInput = document.querySelector("#columns");
+  // Add event listener
+  numColumnsInput.addEventListener("change", () => {
+    numColumns = numColumnsInput.value;
+    img.onload();
+  });
+
+  // await invoke("splice_image", { path: path, columns: numColumns });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
