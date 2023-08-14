@@ -30,6 +30,16 @@ async function file_upload() {
   
   img.onload = async () => {
     let width = img.width;
+
+    // If image is wider than the screen
+    if (width > window.innerWidth*0.8) {
+      // Set image width to screen width
+      img.style.width = `${window.innerWidth*0.8}px`;
+      // Set image height to auto
+      img.style.height = "auto";
+    }
+
+    width = img.width;
     let height = img.height;
     let aspectRatio = 1/Math.sqrt(2);
     let gridElementWidth = width / numColumns;
