@@ -158,4 +158,6 @@ button, input {
   /* opacity: 0.5; */
   /* transition transform */
   transition: transform 0.25s; 
+  /* transition scale */
+  transition: scale 0.25s;
 }

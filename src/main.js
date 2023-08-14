@@ -103,21 +103,10 @@ listen("image-saved", (message) => {
   // Move the image away from the center of the grid with transform
   let move_multiplier = 0.1;
   img.style.transform = `translate(${move_multiplier * distance * Math.cos(direction)}px, ${move_multiplier * distance * Math.sin(direction)}px)`;
-
-  // Find distance from center of grid element to center of grid
-  // let x = gridElementBoundingBox.x - boundingBox.x + gridElementBoundingBox.width / 2;
-  // let y = gridElementBoundingBox.y - boundingBox.y + gridElementBoundingBox.height / 2;
-
-  // Find direction between center of grid element and center of grid
-  // let direction = Math.atan2(y, x);
-  // Move the image away from the center of the grid
-  // let distance = 100;
-  // x += distance * Math.cos(direction);
-  // y += distance * Math.sin(direction);
-  // Set the position of the image with translation
-  // img.style.transform = `translate(${x}px, ${y}px)`;
-
-  // Set grid element background colour
+  // Set image scale slightly larger
+  let scale_multiplier = 1.1;
+  img.style.scale = `1.1`;
+  
   gridElement.style.backgroundColor = "#2f2f2f";
 
   // let mainImage = document.querySelector(".image-container > img");
