@@ -73,6 +73,11 @@ async function chop_image() {
     button.style.display = "none";
   });
 
+  // Get the grid overlay element
+  let gridOverlay = document.querySelector(".grid-overlay");
+  // Set its background
+  gridOverlay.style.backgroundColor = "#2f2f2f80";
+
   await invoke("splice_image", { path: path, columns: numColumns });
 }
 
