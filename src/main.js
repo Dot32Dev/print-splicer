@@ -65,6 +65,14 @@ async function file_upload() {
 }
 
 async function chop_image() {
+  // get elements with class buttons
+  let buttons = document.querySelectorAll(".buttons");
+  // iterate through buttons
+  buttons.forEach((button) => {
+    // display none
+    button.style.display = "none";
+  });
+
   await invoke("splice_image", { path: path, columns: numColumns });
 }
 
@@ -101,11 +109,11 @@ listen("image-saved", (message) => {
   // Find direction between center of grid element and center of grid
   let direction = Math.atan2(gridElementCenterY - y, gridElementCenterX - x);
   // Move the image away from the center of the grid with transform
-  let move_multiplier = 0.1;
+  let move_multiplier = 0.2;
   img.style.transform = `translate(${move_multiplier * distance * Math.cos(direction)}px, ${move_multiplier * distance * Math.sin(direction)}px)`;
   // Set image scale slightly larger
-  let scale_multiplier = 1.1;
-  img.style.scale = `1.1`;
+  let scale_multiplier = 1.2;
+  img.style.scale = `${scale_multiplier}`;
   
   gridElement.style.backgroundColor = "#2f2f2f";
 
