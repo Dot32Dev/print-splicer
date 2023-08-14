@@ -156,4 +156,6 @@ button, input {
 .grid-overlay > * img {
   height: 100%;
   /* opacity: 0.5; */
+  /* transition transform */
+  transition: transform 0.25s; 
 }

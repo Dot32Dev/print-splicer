@@ -77,10 +77,45 @@ listen("image-saved", (message) => {
   let filename = message.payload.split("/").pop();
   // Remove .png from the filename
   filename = filename.substring(0, filename.length - 4);
+
   // Find something with the filenames id
   let gridElement = document.getElementById(filename);
   // Append the image to the grid element
   gridElement.appendChild(img);
+
+  // Get bounding box of grid 
+  let gridOverlay = document.querySelector(".grid-overlay");
+  let boundingBox = gridOverlay.getBoundingClientRect();
+  // Get center of grid bounding box
+  let x = boundingBox.width / 2 + boundingBox.x;
+  let y = boundingBox.height / 2 + boundingBox.y;
+
+  // Get bounding box of grid element
+  let gridElementBoundingBox = gridElement.getBoundingClientRect();
+  // Get center of grid element
+  let gridElementCenterX = gridElementBoundingBox.width / 2 + gridElementBoundingBox.x;
+  let gridElementCenterY = gridElementBoundingBox.height / 2 + gridElementBoundingBox.y;
+
+  // Find distance from center of grid element to center of grid with pythagoras
+  let distance = Math.sqrt(Math.pow(gridElementCenterX - x, 2) + Math.pow(gridElementCenterY - y, 2));
+  // Find direction between center of grid element and center of grid
+  let direction = Math.atan2(gridElementCenterY - y, gridElementCenterX - x);
+  // Move the image away from the center of the grid with transform
+  let move_multiplier = 0.1;
+  img.style.transform = `translate(${move_multiplier * distance * Math.cos(direction)}px, ${move_multiplier * distance * Math.sin(direction)}px)`;
+
+  // Find distance from center of grid element to center of grid
+  // let x = gridElementBoundingBox.x - boundingBox.x + gridElementBoundingBox.width / 2;
+  // let y = gridElementBoundingBox.y - boundingBox.y + gridElementBoundingBox.height / 2;
+
+  // Find direction between center of grid element and center of grid
+  // let direction = Math.atan2(y, x);
+  // Move the image away from the center of the grid
+  // let distance = 100;
+  // x += distance * Math.cos(direction);
+  // y += distance * Math.sin(direction);
+  // Set the position of the image with translation
+  // img.style.transform = `translate(${x}px, ${y}px)`;
 
   // Set grid element background colour
   gridElement.style.backgroundColor = "#2f2f2f";
