@@ -157,7 +157,11 @@ button, input {
   height: 100%;
   /* opacity: 1; */
   /* transition transform */
-  transition: transform 0.25s; 
+  transition: all 0.25s; 
   /* transition scale */
-  transition: scale 0.25s;
+  /* transition: scale 0.25s; */
+}
+
+#open-folder {
+  display: none;
 }

@@ -37,6 +37,9 @@ async function file_upload() {
       img.style.width = `${window.innerWidth*0.8}px`;
       // Set image height to auto
       img.style.height = "auto";
+
+      // Set image container height to 60vh
+      // img_container.style.height = "60vh";
     }
 
     width = img.width;
@@ -82,6 +85,11 @@ async function chop_image() {
     // display none
     button.style.display = "none";
   });
+
+  // Get the element with id open-folder
+  let openFolder = document.querySelector("#open-folder");
+  // Undo display none
+  openFolder.style.display = "block";
 
   // Get the grid overlay element
   let gridOverlay = document.querySelector(".grid-overlay");
