@@ -20,7 +20,7 @@ tauri = { version = "1.2", features = ["dialog-open", "dialog-save", "protocol-a
 
 image = "0.24"
 dirs = "5.0"
-opener = "0.6.1"
+opener = { version = "0.6", features = ["reveal"] }
 
 [features]
 # by default Tauri runs in production mode

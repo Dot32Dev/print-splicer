@@ -147,6 +147,17 @@ listen("image-saved", (message) => {
   // gridElements.forEach((element) => {
   //   element.style.border = "none";
   // });
+
+  // If filename is 0_0
+  if (filename === "0_0") {
+    // Get open-folder element
+    let openFolder = document.querySelector("#open-folder");
+    // Add event listener
+    openFolder.addEventListener("click", () => {
+      // Open the folder containing the images
+      invoke("open_folder", { path: message.payload });
+    });
+  }
 });
 
 window.addEventListener("DOMContentLoaded", () => {

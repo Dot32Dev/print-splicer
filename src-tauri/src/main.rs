@@ -8,6 +8,7 @@ use tauri::Wry;
 use tauri::api::dialog;
 
 use image::{DynamicImage, ImageBuffer, Rgba, RgbaImage, GenericImageView};
+use std::path;
 use std::sync::Arc;
 use std::fs;
 
@@ -67,6 +68,18 @@ async fn splice_image(path: String, columns: u32, window: Window<Wry>) {
     }
 }
 
+#[tauri::command]
+fn open_folder(path: String) {
+    let path = path::Path::new(&path);
+    if path.exists() {
+        if let Err(e) = opener::reveal(path) {
+            eprintln!("Failed to open folder: {}", e);
+        }
+    } else {
+        eprintln!("Path does not exist: {}", path.display());
+    }
+}
+
 fn extract_sub_image(
     img: &DynamicImage,
     x: u32,
@@ -97,6 +110,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             file_upload,
             splice_image,
+            open_folder,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
