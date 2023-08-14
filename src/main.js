@@ -139,6 +139,7 @@ listen("image-saved", (message) => {
   img.style.scale = `${scale_multiplier}`;
   
   gridElement.style.backgroundColor = "#2f2f2f";
+  // gridElement.style.backgroundColor = "black";
 
   // let mainImage = document.querySelector(".image-container > img");
   // mainImage.style.opacity = 0.5;

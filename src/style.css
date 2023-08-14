@@ -9,6 +9,7 @@
 
   color: #f6f6f6;
   background-color: #2f2f2f;
+  /* background-color: black; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,6 +39,7 @@ button, input {
   background-color: #ffffff; */
   color: #ffffff;
   background-color: #0f0f0f98;
+  /* background-color: #2f2f2f; */
   transition: border-color 0.25s;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
@@ -62,18 +64,6 @@ button, input {
   outline: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
-
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-}
-
 .image-container > img {
   height: 60vh;
 }
@@ -82,6 +72,7 @@ button, input {
   position: relative;
   width: fit-content;
   background-color: #0f0f0f98;
+  background-color: black;
   /* background-color: white; */
 }
 /* .image-container .grid-overlay {
@@ -144,6 +135,7 @@ button, input {
   /* border-right: 1px solid #2f2f2f;
   border-bottom: 1px solid #2f2f2f; */
   outline: 1px solid #2f2f2f;
+  /* outline: 1px solid black; */
   outline-offset: -1px;
   /* box-shadow: 0px -3px 2px 0px rgba(0,0,0,0.75) inset; */
 }
