@@ -156,4 +156,5 @@ button, input {
 
 #open-folder {
   display: none;
+  z-index: 2;
 }
