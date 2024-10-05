@@ -1,7 +1,7 @@
-# Tauri + Vanilla
+# Print Splicer
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Javascript.
+Split images into multiple A4 sized pieces. 
 
-## Recommended IDE Setup
+<img width="1194" alt="Screenshot 2024-10-05 at 4 18 16 pm" src="https://github.com/user-attachments/assets/83762b2c-e337-42d5-9dea-54d988252479">
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+Useful for printing large posters. Each split image can be printed onto its own sheet of A4 paper, before taping them back together, creating the final enlargened poster.
